@@ -266,7 +266,7 @@ export default function Aufgaben() {
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                         {/* Quick move dropdown selector */}
                         <select
                           className="text-[10px] font-bold bg-slate-100 rounded border-none py-0.5 px-1 outline-none text-slate-600 focus:ring-0"
@@ -316,7 +316,7 @@ export default function Aufgaben() {
       <dialog 
         ref={dialogRef}
         closedby="any" 
-        className="rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-xs max-w-sm w-full bg-white outline-none"
+        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-sm w-full bg-white outline-none"
         aria-labelledby="todo-dialog-title"
       >
         <form onSubmit={handleSaveTodoSubmit} className="space-y-4">

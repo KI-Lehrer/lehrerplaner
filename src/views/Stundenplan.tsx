@@ -497,7 +497,7 @@ export default function Stundenplan() {
       <dialog 
         ref={dialogRef}
         closedby="any" 
-        className="rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-xs max-w-sm w-full bg-white outline-none"
+        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-sm w-full bg-white outline-none"
         aria-labelledby="cell-editor-title"
       >
         <form onSubmit={handleSaveCell} className="space-y-4">
@@ -579,7 +579,7 @@ export default function Stundenplan() {
       <dialog 
         ref={timeDialogRef}
         closedby="any" 
-        className="rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-xs max-w-xs w-full bg-white outline-none"
+        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-xs w-full bg-white outline-none"
         aria-labelledby="time-editor-title"
       >
         <form onSubmit={handleSaveTime} className="space-y-4">
