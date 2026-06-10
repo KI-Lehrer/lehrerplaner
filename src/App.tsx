@@ -8,6 +8,8 @@ import Jahresuebersicht from './views/Jahresuebersicht';
 import Wochenuebersicht from './views/Wochenuebersicht';
 import Tagesuebersicht from './views/Tagesuebersicht';
 import Aufgaben from './views/Aufgaben';
+import Einstellungen from './views/Einstellungen';
+import { PlannerProvider } from './context/PlannerContext';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ViewTab>('tagesuebersicht');
@@ -25,22 +27,25 @@ export default function App() {
       case 'wochenuebersicht': return <Wochenuebersicht />;
       case 'tagesuebersicht': return <Tagesuebersicht />;
       case 'aufgaben': return <Aufgaben />;
+      case 'einstellungen': return <Einstellungen />;
       default: return <Dashboard />;
     }
   };
 
   return (
-    <div className="flex bg-background min-h-screen">
-      <Topbar toggleMobileMenu={toggleMobileMenu} />
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
-        isMobileMenuOpen={isMobileMenuOpen} 
-        setIsMobileMenuOpen={setIsMobileMenuOpen} 
-      />
-      <div className="flex-1 lg:ml-64 pt-16 flex flex-col min-h-screen">
-        {renderView()}
+    <PlannerProvider>
+      <div className="flex bg-background min-h-screen">
+        <Topbar toggleMobileMenu={toggleMobileMenu} setActiveTab={setActiveTab} />
+        <Sidebar 
+          activeTab={activeTab} 
+          setActiveTab={setActiveTab} 
+          isMobileMenuOpen={isMobileMenuOpen} 
+          setIsMobileMenuOpen={setIsMobileMenuOpen} 
+        />
+        <div className="flex-1 lg:ml-64 pt-16 flex flex-col min-h-screen">
+          {renderView()}
+        </div>
       </div>
-    </div>
+    </PlannerProvider>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewTab } from '../types';
+import { usePlanner } from '../context/PlannerContext';
 
 interface SidebarProps {
   activeTab: ViewTab;
@@ -8,7 +9,7 @@ interface SidebarProps {
   setIsMobileMenuOpen: (isOpen: boolean) => void;
 }
 
-const navItems: { id: ViewTab; label: string; icon: string }[] = [
+const navItems: { id: Exclude<ViewTab, 'einstellungen'>; label: string; icon: string }[] = [
   { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
   { id: 'stundenplan', label: 'Stundenplan', icon: 'calendar_view_week' },
   { id: 'jahresuebersicht', label: 'Jahresübersicht', icon: 'calendar_month' },
@@ -18,6 +19,8 @@ const navItems: { id: ViewTab; label: string; icon: string }[] = [
 ];
 
 export default function Sidebar({ activeTab, setActiveTab, isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
+  const { schoolInfo } = usePlanner();
+
   const handleNavClick = (id: ViewTab) => {
     setActiveTab(id);
     setIsMobileMenuOpen(false);
@@ -46,8 +49,10 @@ export default function Sidebar({ activeTab, setActiveTab, isMobileMenuOpen, set
         </div>
 
         <div className="px-md mb-md">
-          <h2 className="font-headline-lg text-headline-lg text-primary">Mein Planer</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">Schuljahr 2023/24</p>
+          <h2 className="font-headline-lg text-headline-lg text-primary">LehrerPlaner</h2>
+          <p className="font-body-md text-xs text-on-surface-variant font-bold mt-1">
+            Klasse {schoolInfo.class} • Schuljahr {schoolInfo.year}
+          </p>
         </div>
 
         <nav className="flex-1 flex flex-col gap-1 overflow-y-auto">
@@ -78,16 +83,33 @@ export default function Sidebar({ activeTab, setActiveTab, isMobileMenuOpen, set
         </nav>
 
         <div className="px-4 mb-md pt-4">
-          <button className="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:opacity-90 transition-opacity">
+          <button 
+            onClick={() => handleNavClick('aufgaben')}
+            className="w-full bg-primary text-on-primary py-3 rounded-full font-label-md flex items-center justify-center gap-xs hover:opacity-90 transition-opacity"
+          >
             <span className="material-symbols-outlined">add</span>
-            Neue Notiz
+            Neue Aufgabe
           </button>
         </div>
 
         <div className="border-t border-outline-variant pt-2">
-          <button className="w-full text-left text-on-surface-variant px-4 py-3 mx-2 my-1 hover:bg-surface-container-high rounded-full flex items-center gap-sm transition-all">
-            <span className="material-symbols-outlined">logout</span>
-            <span className="font-label-md text-label-md">Abmelden</span>
+          <button 
+            onClick={() => handleNavClick('einstellungen')}
+            className={`
+              w-full text-left px-4 py-3 mx-2 my-1 rounded-full flex items-center gap-sm transition-all
+              ${activeTab === 'einstellungen' 
+                ? 'bg-primary/10 text-primary font-bold' 
+                : 'text-on-surface-variant hover:bg-surface-container-high'
+              }
+            `}
+          >
+            <span 
+              className="material-symbols-outlined"
+              style={{ fontVariationSettings: activeTab === 'einstellungen' ? "'FILL' 1" : "'FILL' 0" }}
+            >
+              settings
+            </span>
+            <span className="font-label-md text-label-md">Einstellungen</span>
           </button>
         </div>
       </aside>
