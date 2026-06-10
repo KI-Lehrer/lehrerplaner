@@ -211,7 +211,8 @@ export default function Aufgaben() {
                 {catTodos.map((todo) => (
                   <div 
                     key={todo.id} 
-                    className="bg-white border border-outline-variant p-5 rounded-2xl hover:shadow-md transition-all sheet-shadow relative group"
+                    className="bg-white border border-outline-variant p-5 rounded-2xl hover:shadow-md transition-all sheet-shadow relative group cursor-pointer"
+                    onClick={() => handleOpenEdit(todo)}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <span className={`text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-0.5 rounded-md ${
@@ -249,14 +250,17 @@ export default function Aufgaben() {
 
                     {/* Footer actions on card */}
                     <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-2">
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
                         <span className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-xs font-bold text-on-secondary-container border border-white">
                           {todo.classLabel}
                         </span>
                         
                         {/* Completed Checkbox */}
                         <button
-                          onClick={() => updateTodo(todo.id, { completed: !todo.completed })}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            updateTodo(todo.id, { completed: !todo.completed });
+                          }}
                           className={`p-1 rounded-full transition-colors material-symbols-outlined text-[20px] ${
                             todo.completed ? 'text-secondary hover:text-slate-400' : 'text-slate-300 hover:text-secondary'
                           }`}
@@ -266,12 +270,13 @@ export default function Aufgaben() {
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity" onClick={(e) => e.stopPropagation()}>
                         {/* Quick move dropdown selector */}
                         <select
                           className="text-[10px] font-bold bg-slate-100 rounded border-none py-0.5 px-1 outline-none text-slate-600 focus:ring-0"
                           value={todo.category}
                           onChange={(e) => handleMoveCategory(todo.id, e.target.value as CategoryType)}
+                          onClick={(e) => e.stopPropagation()}
                         >
                           {CATEGORIES.map(c => (
                             <option key={c.key} value={c.key}>{c.label}</option>
@@ -279,20 +284,24 @@ export default function Aufgaben() {
                         </select>
 
                         <button 
-                          onClick={() => handleOpenEdit(todo)}
-                          className="p-1 hover:bg-slate-100 text-primary rounded material-symbols-outlined text-[16px]"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenEdit(todo);
+                          }}
+                          className="p-1 hover:bg-slate-100 text-primary rounded flex items-center justify-center"
                           title="Bearbeiten"
                         >
-                          edit
+                          <span className="material-symbols-outlined text-[16px]">edit</span>
                         </button>
                         <button 
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.stopPropagation();
                             if (window.confirm('Aufgabe wirklich löschen?')) deleteTodo(todo.id);
                           }}
-                          className="p-1 hover:bg-error/5 text-error rounded material-symbols-outlined text-[16px]"
+                          className="p-1 hover:bg-error/5 text-error rounded flex items-center justify-center"
                           title="Löschen"
                         >
-                          delete
+                          <span className="material-symbols-outlined text-[16px]">delete</span>
                         </button>
                       </div>
                     </div>
