@@ -299,7 +299,7 @@ export default function Jahresuebersicht() {
       <dialog
         ref={dialogRef}
         closedby="any"
-        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-sm w-full bg-white outline-none"
+        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-[450px] w-full bg-white outline-none"
         aria-labelledby="calendar-editor-title"
       >
         <form onSubmit={handleSaveEvent} className="space-y-4">

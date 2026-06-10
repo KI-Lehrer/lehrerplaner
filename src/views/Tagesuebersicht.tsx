@@ -390,7 +390,7 @@ export default function Tagesuebersicht() {
             <div className="flex flex-col items-center justify-center p-12 bg-white border border-outline-variant rounded-3xl min-h-[300px] text-center shadow-sm">
               <span className="material-symbols-outlined text-5xl text-outline mb-4">weekend</span>
               <h3 className="font-title-md text-lg font-bold text-on-surface mb-2">Wochenende</h3>
-              <p className="text-sm text-on-surface-variant max-w-sm">
+              <p className="text-sm text-on-surface-variant max-w-[450px]">
                 Am Wochenende findet kein regulärer Unterricht statt. Wähle ein anderes Datum in der Leiste oben aus, um Unterrichtsstunden zu planen.
               </p>
             </div>
@@ -400,7 +400,7 @@ export default function Tagesuebersicht() {
             <div className="flex flex-col items-center justify-center p-12 bg-white border border-outline-variant rounded-3xl min-h-[300px] text-center shadow-sm">
               <span className="material-symbols-outlined text-5xl text-outline mb-4">calendar_today</span>
               <h3 className="font-title-md text-lg font-bold text-on-surface mb-2">Kein Unterricht geplant</h3>
-              <p className="text-sm text-on-surface-variant max-w-sm">
+              <p className="text-sm text-on-surface-variant max-w-[450px]">
                 Für diesen Wochentag sind keine Lektionen im Stundenplan hinterlegt. Du kannst deinen Stundenplan im Stundenplan-Tab konfigurieren.
               </p>
             </div>

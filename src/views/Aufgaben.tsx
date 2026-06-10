@@ -325,7 +325,7 @@ export default function Aufgaben() {
       <dialog 
         ref={dialogRef}
         closedby="any" 
-        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-sm w-full bg-white outline-none"
+        className="m-auto rounded-3xl border border-slate-200 p-6 shadow-xl backdrop:backdrop-blur-sm max-w-[450px] w-full bg-white outline-none"
         aria-labelledby="todo-dialog-title"
       >
         <form onSubmit={handleSaveTodoSubmit} className="space-y-4">

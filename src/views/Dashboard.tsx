@@ -158,7 +158,7 @@ export default function Dashboard() {
                   <br />
                   {subjectInfo?.subject === 'X' ? 'Regelunterricht (KLP)' : subjectInfo?.teacherName}
                 </h2>
-                <p className="mt-4 text-primary-fixed/80 max-w-lg font-body-md text-body-md">
+                <p className="mt-4 text-primary-fixed/80 max-w-[512px] font-body-md text-body-md">
                   Fach: {subjectInfo?.subject} • Lehrperson: {subjectInfo?.teacherName} • Raum: {subjectInfo?.room}
                   {schoolInfo.notice && <span className="block mt-2 text-xs italic text-white/75">{schoolInfo.notice}</span>}
                 </p>
@@ -166,7 +166,7 @@ export default function Dashboard() {
             ) : (
               <>
                 <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Kein Unterricht</h2>
-                <p className="mt-4 text-primary-fixed/80 max-w-lg font-body-md text-body-md">
+                <p className="mt-4 text-primary-fixed/80 max-w-[512px] font-body-md text-body-md">
                   Für den heutigen Tag ist kein planmäßiger Unterricht eingetragen oder Schulschluss ist bereits erreicht.
                 </p>
               </>
